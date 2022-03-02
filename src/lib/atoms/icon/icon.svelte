@@ -1,24 +1,3 @@
-<Svg label={label} width={width} height={height} box={box} style={combinedStyle}
-  spin={spin} flip={flip} inverse={inverse} pulse={pulse} class={className}>
-  <slot>
-    {#if self}
-      {#if self.paths}
-        {#each self.paths as path, i}
-        <Path id="{i}" data="{path}"/>
-        {/each}
-      {/if}
-      {#if self.polygons}
-        {#each self.polygons as polygon, i}
-        <Polygon id="{i}" data="{polygon}"/>
-        {/each}
-      {/if}
-      {#if self.raw}
-        <Raw bind:data={self} />
-      {/if}
-    {/if}
-  </slot>
-</Svg>
-
 <script lang="ts">
   /* eslint-disable no-unused-vars */
   import Path from './svg/Path.svelte';
@@ -26,7 +5,7 @@
   import Raw from './svg/Raw.svelte';
   import Svg from './svg/Svg.svelte';
 
-  let className = "";
+  let className = '';
 
   export let data;
   export let scale = 1;
@@ -88,10 +67,12 @@
       let iconData = {
         width,
         height,
-        paths: [{
-          d: paths
-        }]
-      }
+        paths: [
+          {
+            d: paths,
+          },
+        ],
+      };
       normalisedData[name] = iconData;
       return normalisedData;
     }
@@ -103,7 +84,8 @@
     if (typeof scale !== 'undefined') {
       numScale = Number(scale);
     }
-    if (isNaN(numScale) || numScale <= 0) { // eslint-disable-line no-restricted-globals
+    if (isNaN(numScale) || numScale <= 0) {
+      // eslint-disable-line no-restricted-globals
       console.warn('Invalid prop: prop "scale" should be a number over 0.'); // eslint-disable-line no-console
       return outerScale;
     }
@@ -145,7 +127,7 @@
   }
 
   function calculateStyle() {
-    let combined = "";
+    let combined = '';
     if (style !== null) {
       combined += style;
     }
@@ -156,13 +138,13 @@
       }
       return combined;
     }
-    if (combined !== "" && !combined.endsWith(';')) {
+    if (combined !== '' && !combined.endsWith(';')) {
       combined += '; ';
     }
     return `${combined}font-size: ${size}em`;
   }
 
-   $: {
+  $: {
     data; // this is needed to keep data up-to-date
     style;
     scale;
@@ -173,3 +155,34 @@
     box = calculateBox();
   }
 </script>
+
+<Svg
+  {label}
+  {width}
+  {height}
+  {box}
+  style={combinedStyle}
+  {spin}
+  {flip}
+  {inverse}
+  {pulse}
+  class={className}
+>
+  <slot>
+    {#if self}
+      {#if self.paths}
+        {#each self.paths as path, i}
+          <Path id={i} data={path} />
+        {/each}
+      {/if}
+      {#if self.polygons}
+        {#each self.polygons as polygon, i}
+          <Polygon id={i} data={polygon} />
+        {/each}
+      {/if}
+      {#if self.raw}
+        <Raw bind:data={self} />
+      {/if}
+    {/if}
+  </slot>
+</Svg>

@@ -1,13 +1,8 @@
 <script lang="ts">
+  import Icon from '$lib/atoms/icon/icon.svelte';
+  import { default as cloud } from '$lib/assets/icons/cloud';
+  import Button from '$lib/atoms/button/button.svelte';
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>
-  Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation
-</p>
-
-<style>
-  h1 {
-    @apply text-3xl font-bold underline text-indigo-700;
-  }
-</style>
+<Icon data={cloud} />
+<Button label={'mohab'} />
