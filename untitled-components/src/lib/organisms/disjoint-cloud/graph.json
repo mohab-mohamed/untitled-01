@@ -1,0 +1,60 @@
+{
+    "nodes": [
+        {
+            "id": "Structural basis of PROTAC cooperative recognition for selective protein degradation.",
+            "group": "Cited Works",
+            "radius": 2,
+            "citing_patents_count": 2
+        },
+        {
+            "id": "The influence of rough lipopolysaccharide structure on molecular interactions with mammalian antimicrobial peptides",
+            "group": "Cited Works",
+            "radius": 1,
+            "citing_patents_count": 1
+        },
+        {
+            "id": "New Synthetic Routes to Triazolo-benzodiazepine Analogues: Expanding the Scope of the Bump-and-Hole Approach for Selective Bromo and Extra-Terminal (BET) Bromodomain Inhibition.",
+            "group": "Cited Works",
+            "radius": 1,
+            "citing_patents_count": 1
+        },
+        {
+            "id": "Cyclic and Macrocyclic Peptides as Chemical Tools To Recognise Protein Surfaces and Probe Protein-Protein Interactions.",
+            "group": "Cited Works",
+            "radius": 1,
+            "citing_patents_count": 1
+        },
+        {"id": "109-294-662-661-65X", "group": "Citing Patents"},
+        {"id": "074-937-457-594-345", "group": "Citing Patents"},
+        {"id": "081-355-367-506-27X", "group": "Citing Patents"},
+        {"id": "048-634-530-447-798", "group": "Citing Patents"},
+        {"id": "137-231-469-269-151", "group": "Citing Patents"}
+    ],
+    "links": [
+        {
+            "source": "Structural basis of PROTAC cooperative recognition for selective protein degradation.",
+            "target": "109-294-662-661-65X",
+            "value": 2
+        },
+        {
+            "source": "Structural basis of PROTAC cooperative recognition for selective protein degradation.",
+            "target": "074-937-457-594-345",
+            "value": 2
+        },
+        {
+            "source": "The influence of rough lipopolysaccharide structure on molecular interactions with mammalian antimicrobial peptides",
+            "target": "081-355-367-506-27X",
+            "value": 2
+        },
+        {
+            "source": "New Synthetic Routes to Triazolo-benzodiazepine Analogues: Expanding the Scope of the Bump-and-Hole Approach for Selective Bromo and Extra-Terminal (BET) Bromodomain Inhibition.",
+            "target": "048-634-530-447-798",
+            "value": 2
+        },
+        {
+            "source": "Cyclic and Macrocyclic Peptides as Chemical Tools To Recognise Protein Surfaces and Probe Protein-Protein Interactions.",
+            "target": "137-231-469-269-151",
+            "value": 2
+        }
+    ]
+}
