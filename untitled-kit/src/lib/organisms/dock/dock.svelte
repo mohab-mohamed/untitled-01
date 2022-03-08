@@ -1,0 +1,11 @@
+<script>
+  import DockIcon from '$lib/molecules/dock-icon/dock-icon.svelte';
+  import IconButton from '$lib/molecules/icon-button/icon-button.svelte';
+  export let list;
+</script>
+
+<div class="flex items-center h-18">
+  {#each list as item}
+    <IconButton className="mx-3" iconData={item.iconData} />
+  {/each}
+</div>

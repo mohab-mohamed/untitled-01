@@ -14,6 +14,7 @@
   export let pulse = false;
   export let flip: string = null;
   export let label: string = null;
+  export let color = null;
   let self = null;
   export let style: string = null;
   export { className as class };
@@ -166,7 +167,10 @@
   {flip}
   {inverse}
   {pulse}
+  {color}
   class={className}
+  on:mouseenter
+  on:mouseleave
 >
   <slot>
     {#if self}

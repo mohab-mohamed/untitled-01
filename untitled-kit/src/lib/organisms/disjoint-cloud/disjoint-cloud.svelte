@@ -3,6 +3,8 @@
   import graph from './graph.json';
   import { onMount } from 'svelte';
 
+  let chartContainer;
+
   onMount(() => {
     const chart = ForceGraph(
       graph,
@@ -12,14 +14,13 @@
         nodeGroup: (d) => d.group,
         nodeTitle: (d) => `${d.id} (${d.group})`,
         //@ts-ignore
-        width: 680,
-        height: 680,
+        width: 1853,
+        height: 784,
         //@ts-ignore
         invalidation: null, // a promise to stop the simulation when the cell is re-run
       }
     );
-
-    console.log(chart);
+    chartContainer.appendChild(chart);
   });
 
   // Copyright 2021 Observable, Inc.
@@ -125,6 +126,7 @@
       .attr('stroke', nodeStroke)
       .attr('stroke-opacity', nodeStrokeOpacity)
       .attr('stroke-width', nodeStrokeWidth)
+      .attr('cursor', 'pointer')
       .selectAll('circle')
       .data(nodes)
       .join('circle')
@@ -182,4 +184,4 @@
   }
 </script>
 
-<div />
+<div bind:this={chartContainer} />

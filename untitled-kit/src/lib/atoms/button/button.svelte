@@ -10,7 +10,7 @@
     'rounded',
     'border',
     'border-gray-200',
-    'hover:bg-gray-800',
+    'hover:bg-gray-500',
     'hover:text-gray-200',
   ].join(' ')}
 >
