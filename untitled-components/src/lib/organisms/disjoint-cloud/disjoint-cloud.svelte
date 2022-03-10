@@ -7,58 +7,66 @@
         nodes: [
             {
                 id: '640:477',
+                label: '640:477 Intro to Probability',
                 group: 'Folder',
+                parent: '',
                 radius: 2,
                 citing_patents_count: 2
             },
             {
                 id: '198:111',
+                label: '640:477 Intro to Computer Science',
                 group: 'Folder',
+                parent: '',
                 radius: 1,
                 citing_patents_count: 1
             },
             {
                 id: 'untitled-01',
+                label: 'untitled-01',
                 group: 'Folder',
+                parent: '',
                 radius: 1,
                 citing_patents_count: 1
             },
             {
                 id: 'amazon',
+                label: 'amazon',
                 group: 'Folder',
+                parent: '',
                 radius: 1,
                 citing_patents_count: 1
             },
-            {id: 'Homework 1', group: 'File'},
-            {id: 'Lecture Notes 1', group: 'File'},
-            {id: 'Homework 1', group: 'File'},
-            {id: 'design-01', group: 'File'},
-            {id: 'principles', group: 'File'}
+            {id: '640:477\\Homework 1', label: 'Homework 1', group: 'File', parent: '640:477'},
+            {id: '640:477\\Lecture Notes 1', label: 'Lecture Notes 1', group: 'File', parent: '640:477'},
+            {id: '198:111\\Homework 1', label: 'Homework 1', group: 'File', parent: '198:111'},
+            {id: 'untitled-01\\design-01', label: 'design-01', group: 'File', parent: 'untitled-01'},
+            {id: 'amazon\\principles', label: 'principles', group: 'File', parent: 'amazon'}
         ],
         links: [
             {
                 source: '640:477',
-                target: 'Homework 1',
+                target: '640:477\\Homework 1',
                 value: 2
             },
             {
                 source: '640:477',
-                target: 'Lecture Notes 1',
+                target: '640:477\\Lecture Notes 1',
                 value: 2
             },
             {
                 source: '198:111',
-                target: 'Homework 1',
+                target: '198:111\\Homework 1',
                 value: 2
             },
             {
                 source: 'untitled-01',
-                target: 'design-01',
+                target: 'untitled-01\\design-01',
                 value: 2
             },
             {
                 source: 'amazon',
-                target: 'principles',
+                target: 'amazon\\principles',
                 value: 2
             }
         ]
@@ -127,6 +135,7 @@
         const LS = d3.map(links, linkSource).map(intern);
         const LT = d3.map(links, linkTarget).map(intern);
         if (nodeTitle === undefined) nodeTitle = (_, i) => N[i];
+        console.log(N);
         const T = nodeTitle == null ? null : d3.map(nodes, nodeTitle);
         const G = nodeGroup == null ? null : d3.map(nodes, nodeGroup).map(intern);
         const W = typeof linkStrokeWidth !== 'function' ? null : d3.map(links, linkStrokeWidth);
