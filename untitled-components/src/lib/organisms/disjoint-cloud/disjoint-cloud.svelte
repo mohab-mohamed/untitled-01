@@ -6,64 +6,63 @@
     const graph = {
         nodes: [
             {
-                id: 'Structural basis of PROTAC cooperative recognition for selective protein degradation.',
-                group: 'Cited Works',
+                id: '640:477',
+                group: 'Folder',
                 radius: 2,
                 citing_patents_count: 2
             },
             {
-                id: 'The influence of rough lipopolysaccharide structure on molecular interactions with mammalian antimicrobial peptides',
-                group: 'Cited Works',
+                id: '198:111',
+                group: 'Folder',
                 radius: 1,
                 citing_patents_count: 1
             },
             {
-                id: 'New Synthetic Routes to Triazolo-benzodiazepine Analogues: Expanding the Scope of the Bump-and-Hole Approach for Selective Bromo and Extra-Terminal (BET) Bromodomain Inhibition.',
-                group: 'Cited Works',
+                id: 'untitled-01',
+                group: 'Folder',
                 radius: 1,
                 citing_patents_count: 1
             },
             {
-                id: 'Cyclic and Macrocyclic Peptides as Chemical Tools To Recognise Protein Surfaces and Probe Protein-Protein Interactions.',
-                group: 'Cited Works',
+                id: 'amazon',
+                group: 'Folder',
                 radius: 1,
                 citing_patents_count: 1
             },
-            {id: '109-294-662-661-65X', group: 'Citing Patents'},
-            {id: '074-937-457-594-345', group: 'Citing Patents'},
-            {id: '081-355-367-506-27X', group: 'Citing Patents'},
-            {id: '048-634-530-447-798', group: 'Citing Patents'},
-            {id: '137-231-469-269-151', group: 'Citing Patents'}
+            {id: 'Homework 1', group: 'File'},
+            {id: 'Lecture Notes 1', group: 'File'},
+            {id: 'Homework 1', group: 'File'},
+            {id: 'design-01', group: 'File'},
+            {id: 'principles', group: 'File'}
         ],
         links: [
             {
-                source: 'Structural basis of PROTAC cooperative recognition for selective protein degradation.',
-                target: '109-294-662-661-65X',
+                source: '640:477',
+                target: 'Homework 1',
                 value: 2
             },
             {
-                source: 'Structural basis of PROTAC cooperative recognition for selective protein degradation.',
-                target: '074-937-457-594-345',
+                source: '640:477',
+                target: 'Lecture Notes 1',
                 value: 2
             },
             {
-                source: 'The influence of rough lipopolysaccharide structure on molecular interactions with mammalian antimicrobial peptides',
-                target: '081-355-367-506-27X',
+                source: '198:111',
+                target: 'Homework 1',
                 value: 2
             },
             {
-                source: 'New Synthetic Routes to Triazolo-benzodiazepine Analogues: Expanding the Scope of the Bump-and-Hole Approach for Selective Bromo and Extra-Terminal (BET) Bromodomain Inhibition.',
-                target: '048-634-530-447-798',
+                source: 'untitled-01',
+                target: 'design-01',
                 value: 2
             },
             {
-                source: 'Cyclic and Macrocyclic Peptides as Chemical Tools To Recognise Protein Surfaces and Probe Protein-Protein Interactions.',
-                target: '137-231-469-269-151',
+                source: 'amazon',
+                target: 'principles',
                 value: 2
             }
         ]
     };
-
     let chartContainer;
 
     onMount(() => {
@@ -122,6 +121,7 @@
             invalidation // when this promise resolves, stop the simulation
         } = {}
     ) {
+        console.log('links', links);
         // Compute values.
         const N = d3.map(nodes, nodeId).map(intern);
         const LS = d3.map(links, linkSource).map(intern);
@@ -184,8 +184,12 @@
             .selectAll('circle')
             .data(nodes)
             .join('circle')
+            .attr('data-parent', 'parent')
             .attr('r', nodeRadius)
+            .on('click', e => console.log(e.target))
             .call(drag(simulation));
+
+        console.log(node);
 
         if (G) node.attr('fill', ({index: i}) => color(G[i]));
         if (T) node.append('title').text(({index: i}) => T[i]);
