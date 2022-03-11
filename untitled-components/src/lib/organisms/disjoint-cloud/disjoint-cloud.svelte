@@ -2,6 +2,7 @@
     import * as d3 from 'd3';
     // import graph from './graph.json';
     import {onMount} from 'svelte';
+    import {createEventDispatcher} from 'svelte';
 
     const graph = {
         nodes: [
@@ -9,7 +10,7 @@
                 id: '640:477',
                 label: '640:477 Intro to Probability',
                 group: 'Folder',
-                parent: '',
+                parent: null,
                 radius: 2,
                 citing_patents_count: 2
             },
@@ -17,7 +18,7 @@
                 id: '198:111',
                 label: '640:477 Intro to Computer Science',
                 group: 'Folder',
-                parent: '',
+                parent: null,
                 radius: 1,
                 citing_patents_count: 1
             },
@@ -25,7 +26,7 @@
                 id: 'untitled-01',
                 label: 'untitled-01',
                 group: 'Folder',
-                parent: '',
+                parent: null,
                 radius: 1,
                 citing_patents_count: 1
             },
@@ -33,7 +34,7 @@
                 id: 'amazon',
                 label: 'amazon',
                 group: 'Folder',
-                parent: '',
+                parent: null,
                 radius: 1,
                 citing_patents_count: 1
             },
@@ -79,6 +80,8 @@
             //@ts-ignore
             {
                 nodeId: d => d.id,
+                nodeLabel: d => d.label,
+                nodeParent: d => d.parent,
                 nodeGroup: d => d.group,
                 nodeTitle: d => `${d.id} (${d.group})`,
                 //@ts-ignore
@@ -107,6 +110,8 @@
             nodeGroups, // an array of ordinal values representing the node groups
             //@ts-ignore
             nodeTitle, // given d in nodes, a title string
+            nodeLabel, // given d in nodes, a label string
+            nodeParent, // given d in nodes, a parent id
             nodeFill = 'currentColor', // node stroke fill (if not using a group color encoding)
             nodeStroke = '#fff', // node stroke color
             nodeStrokeWidth = 1.5, // node stroke width, in pixels
@@ -135,8 +140,10 @@
         const LS = d3.map(links, linkSource).map(intern);
         const LT = d3.map(links, linkTarget).map(intern);
         if (nodeTitle === undefined) nodeTitle = (_, i) => N[i];
-        console.log(N);
         const T = nodeTitle == null ? null : d3.map(nodes, nodeTitle);
+        const L = nodeLabel == null ? null : d3.map(nodes, nodeLabel); //labels
+        const P = nodeParent == null ? null : d3.map(nodes, nodeParent); //parents
+        console.log(L);
         const G = nodeGroup == null ? null : d3.map(nodes, nodeGroup).map(intern);
         const W = typeof linkStrokeWidth !== 'function' ? null : d3.map(links, linkStrokeWidth);
 
@@ -193,9 +200,10 @@
             .selectAll('circle')
             .data(nodes)
             .join('circle')
-            .attr('data-parent', 'parent')
+            .attr('data-label', ({index: i}) => L[i])
+            .attr('data-parent', ({index: i}) => P[i])
             .attr('r', nodeRadius)
-            .on('click', e => console.log(e.target))
+            .on('click', e => console.log(e.target.dataset))
             .call(drag(simulation));
 
         console.log(node);
